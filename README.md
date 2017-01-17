@@ -5,7 +5,7 @@ This is a recipe for creating a trac environment for Docker
 1. Clone the project and go into the main folder.
 
 ```bash
-htpasswd etc/trac/htpasswd mary
+git clone git@github.com:pyaster/docker-trac.git
 ```
 
 2. Setup trac configuration changing files in *etc* 
