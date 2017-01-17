@@ -32,7 +32,8 @@ To perform this type in a console:
 
 ```bash
 htpasswd -c etc/trac/htpasswd admin
-htpasswd -c etc/trac/htpasswd peter
+htpasswd etc/trac/htpasswd peter
+htpasswd etc/trac/htpasswd mary
 ```
 
 You may need the apache2-utils package
