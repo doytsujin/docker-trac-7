@@ -43,20 +43,23 @@ In a apt based environment (debian, ubuntu, ...) you can install it by:
 ```bash
 apt-get install apache2-utils
 ```
-## helpers
+## Helpers
 
-Run trac docker for 1st time
+Create Docker image and run trac container for 1st time
 ```bash
-docker run --cidfile trac_docker.id   -i -p 80:80 -t mytrac
+./quick-start.sh 
 ```
-
-Stop (pause) the trac container
+Pause the trac container
 ```bash
-docker stop `cat trac_docker.id`
+./pause.sh 
 ```
 
 Resume the paused trac container
-
 ```bash
-docker start `cat trac_docker.id`
+./resume.sh
 ```
+Backup trac important files
+```bash
+./backup.sh
+```
+This script pause the container for a little bit, copy the files in a safe fashion and resume the service ASAP.
