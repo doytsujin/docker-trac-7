@@ -1,6 +1,7 @@
 FROM debian:latest
 MAINTAINER = aster <asterio.gonzalez@gmail.com>
 ENV DEBIAN_FRONTEND noninteractive
+ENV PKG_RESOURCES_CACHE_ZIP_MANIFESTS 1  # to adoid 'Warning: Detected setuptools version 5.5.1...'
 
 RUN apt-get update
 RUN apt-get install -y apt-utils
@@ -8,7 +9,7 @@ RUN apt-get install -y python-pip
 RUN apt-get install -y subversion
 #RUN pip install --upgrade pip  # update PIP to the last version
 RUN apt-get install -y vim  # only if we are going to enter interactively for debugging
-
+RUN apt-get install -y wget # for debuging
 
 # Install main packages
 #======================
@@ -21,24 +22,31 @@ RUN apt-get install -y trac
 
 # Plugins
 #======================
-#RUN easy_install https://trac-hacks.org/svn/tracwysiwygplugin/0.12
 
 #RUN pip install graphviz
 #RUN easy_install https://trac-hacks.org/svn/graphvizplugin/tags/0.11-0.7.5
 RUN apt-get install -y trac-accountmanager
+RUN apt-get install -y trac-wysiwyg
+RUN apt-get install -y trac-graphviz
+RUN apt-get install -y trac-mastertickets
+RUN apt-get install -y trac-tags
+RUN easy_install https://trac-hacks.org/svn/wikiautocompleteplugin/trunk/
+#RUN easy_install tracstats
+RUN apt-get install -y trac-includemacro
+
+#RUN easy_install https://trac-hacks.org/svn/cardsplugin/trunk
+#RUN easy_install https://trac-hacks.org/svn/whiteboardplugin/0.12/trunk/
+
 #RUN apt-get install -y trac-customfieldadmin
 #RUN apt-get install -y trac-xmlrpc
 #RUN apt-get install -y trac-wikiprint
-RUN apt-get install -y trac-wysiwyg
-#RUN apt-get install -y trac-mastertickets
-#RUN apt-get install -y trac-tags
 #RUN apt-get install -y trac-diavisview
 #RUN apt-get install -y trac-announcer
 #RUN apt-get install -y trac-batchmodify
-#RUN apt-get install -y trac-graphviz
-#RUN apt-get install -y python-flup
 
 #RUN easy_install https://trac-hacks.org/svn/wikiautocompleteplugin
+
+# https://trac-hacks.org/wiki/TextareaKeyBindingsPlugin
 
 
 
@@ -65,9 +73,6 @@ RUN bash /root/trac_setup.sh
 #apt-get install -y cron
 #apt-get install -y wget
 #apt-get install -y libmysqlclient-dev
-#apt-get install -y subversion
-#RUN apt-get install -y git
-#RUN apt-get install -y vim
 #apt-get install -y graphviz
 #apt-get install -y python-imaging
 #apt-get install -y python-dev

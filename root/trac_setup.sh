@@ -51,12 +51,44 @@ setup_trac() {
 	trac-admin $TRAC_ENV config set header_logo alt "$TRAC_PROJECT_NAME logo"
 	trac-admin $TRAC_ENV config set header_logo src site/`basename $PROJECT_LOGO`
 	trac-admin $TRAC_ENV config set header_logo width 64
+	trac-admin $TRAC_ENV upgrade
 	
-	#setup_components
-        #setup_accountmanager
-        #setup_admin_user
-	#setup_git
-        #trac-admin $TRAC_ENV config set logging log_type stderr
+	# MasterTicketsPlugin
+	trac-admin $TRAC_ENV config set ticket-custom blocking text
+	trac-admin $TRAC_ENV config set ticket-custom blocking.label "Blocking"
+	trac-admin $TRAC_ENV config set ticket-custom blockedby text
+	trac-admin $TRAC_ENV config set ticket-custom blockedby.label "Blocked By"
+    trac-admin $TRAC_ENV config set components mastertickets.* enabled
+	trac-admin $TRAC_ENV upgrade
+	
+	# Graphviz
+    trac-admin $TRAC_ENV config set components graphviz.* enabled
+	
+	# WikiAutoComplete
+    trac-admin $TRAC_ENV config set components wikiautocomplete.web_ui.* enabled
+	
+	# TracTags
+    trac-admin $TRAC_ENV config set components tractags.* enabled
+	trac-admin $TRAC_ENV upgrade
+	
+	# CardsPlugin
+	# https://trac-hacks.org/wiki/CardsPlugin
+    trac-admin $TRAC_ENV config set components cards.* enabled
+	trac-admin $TRAC_ENV config set cards auto_refresh True
+	trac-admin $TRAC_ENV config set cards auto_refresh_interval 10
+	trac-admin $TRAC_ENV upgrade
+	
+	# TracStatsPlugin
+	# https://trac-hacks.org/wiki/TracStatsPlugin
+    trac-admin $TRAC_ENV config set components tracstats.* enabled
+	trac-admin $TRAC_ENV config set git cached_repository True
+	trac-admin $TRAC_ENV config set git persistent_cache True
+	
+	# IncludeMacro
+	# https://trac-hacks.org/wiki/IncludeMacro
+    trac-admin $TRAC_ENV config set components includemacro.* enabled
+	
+    #trac-admin $TRAC_ENV config set logging log_type stderr
         
     fi
 }
