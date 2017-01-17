@@ -11,10 +11,16 @@ RUN apt-get install -y vim  # only if we are going to enter interactively for de
 
 # Install packages
 #======================
-#RUN bash /root/trac_packages.sh
-
 RUN apt-get install -y git-core
+RUN apt-get install -y apache2-utils  # htpasswd check contrib/htpasswd from trac
+
 RUN pip install -U trac
+RUN pip install TracAccountManager
+
+
+# Apache services
+#RUN apt-get install -y apache2
+#RUN apt-get install -y libapache2-mod-python libapache2-mod-python-doc
 
 # Configuration
 #======================
@@ -23,7 +29,15 @@ COPY etc /etc/
 # Trac setup
 #======================
 COPY root /root
+
+# Setup trac and git environments
 RUN bash /root/trac_setup.sh
+
+# Apache mod_python
+#RUN a2enconf trac.conf
+#RUN a2enmod python
+#RUN service apache2 start
+
 
 
 
@@ -113,6 +127,6 @@ RUN bash /root/trac_setup.sh
 
 
 EXPOSE 80
-CMD ["/bin/bash"]
-#CMD ["/run.sh"]
+#CMD ["/bin/bash"]
+CMD ["/root/run.sh"]
 
