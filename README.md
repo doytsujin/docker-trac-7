@@ -43,4 +43,20 @@ In a apt based environment (debian, ubuntu, ...) you can install it by:
 ```bash
 apt-get install apache2-utils
 ```
+## helpers
 
+Run trac docker for 1st time
+```bash
+docker run --cidfile trac_docker.id   -i -p 80:80 -t mytrac
+```
+
+Stop (pause) the trac container
+```bash
+docker stop `cat trac_docker.id`
+```
+
+Resume the paused trac container
+
+```bash
+docker start `cat trac_docker.id`
+```
