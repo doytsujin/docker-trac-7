@@ -31,8 +31,8 @@ Users are added now by modifing the etc/trac/htpasswd file before creating the i
 To perform this type in a console:
 
 ```bash
-htpasswd -a etc/trac/htpasswd admin
-htpasswd -a etc/trac/htpasswd peter
+htpasswd -c etc/trac/htpasswd admin
+htpasswd -c etc/trac/htpasswd peter
 ```
 
 You may need the apache2-utils package
