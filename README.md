@@ -1,5 +1,3 @@
-## Intro
-
 This is a recipe for creaing a trac environment for Docker
 
 ## Installing
@@ -25,3 +23,23 @@ Just for testing purproses the script
 DELETE all IMAGES and CONTAINERS and build a clean image
 
 Use as your OWN RISK.
+
+## Users
+
+Users are added now by modifing the etc/trac/htpasswd file before creating the image. In next versions I'll set another more friendly way.
+
+To perform this type in a console:
+
+```bash
+htpasswd -a etc/trac/htpasswd admin
+htpasswd -a etc/trac/htpasswd peter
+```
+
+You may need the apache2-utils package
+
+In a apt based environment (debian, ubuntu, ...) you can install it by:
+
+```bash
+apt-get install apache2-utils
+```
+
