@@ -2,15 +2,15 @@ This is a recipe for creating a trac environment for Docker
 
 ## Installing
 
-1. Clone the project and go into the main folder.
+Clone the project and go into the main folder.
 
 ```bash
 git clone git@github.com:pyaster/docker-trac.git
 ```
 
-2. Setup trac configuration changing files in *etc* 
+Setup trac configuration changing files in *etc* 
 
-3. Add users
+Add users
 
 By default htpasswd file is populated with a admin/admin user.
 
@@ -30,7 +30,7 @@ In a apt based environment (debian, ubuntu, ...) you can install it by:
 apt-get install apache2-utils
 ```
 
-4. Build and start trac container for 1st time
+Build and start trac container for 1st time
 
 ```bash
 ./quick-start.sh 
