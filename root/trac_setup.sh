@@ -41,31 +41,16 @@ setup_trac() {
 	# the name of the authentication "realm", it can be any text to identify your site or project
 	#trac-admin $TRAC_ENV config set account-manager htdigest_realm TracRealm
 
-	# from https://trac-hacks.org/wiki/CookBook/AccountManagerPluginConfiguration
-    #trac-admin $TRAC_ENV config set account-manager htpasswd_hash_type md5
-	#trac-admin $TRAC_ENV config set account-manager password_store HtPasswdStore
-	#trac-admin $TRAC_ENV config set account-manager htpasswd_file /etc/trac/htpasswd
-	#trac-admin $TRAC_ENV config set account-manager reset_password false
-	#trac-admin $TRAC_ENV config set account-manager persistent_sessions true
-
-	#trac-admin $TRAC_ENV config set account-manager login_attempt_max_count 3
-	#trac-admin $TRAC_ENV config set account-manager user_lock_time 10
-	#trac-admin $TRAC_ENV config set account-manager user_lock_max_time 0
-	#trac-admin $TRAC_ENV config set account-manager user_lock_time_progression 2
-				
-	#trac-admin $TRAC_ENV config set components acct_mgr.* enabled
-	#trac-admin $TRAC_ENV config set components acct_mgr.htfile.htdigeststore disabled
-	#trac-admin $TRAC_ENV config set components acct_mgr.htfile.htpasswdstore disabled
-	#trac-admin $TRAC_ENV config set components acct_mgr.http.* disabled
-	#trac-admin $TRAC_ENV config set components acct_mgr.pwhash.* enabled
-	#trac-admin $TRAC_ENV config set components acct_mgr.svnserve.svnservepasswordstore disabled
-	#trac-admin $TRAC_ENV config set components acct_mgr.web_ui.resetpwstore disabled
+	trac-admin $TRAC_ENV config set account-manager login_attempt_max_count 3
+	trac-admin $TRAC_ENV config set account-manager user_lock_time 10
+	trac-admin $TRAC_ENV config set account-manager user_lock_max_time 0
+	trac-admin $TRAC_ENV config set account-manager user_lock_time_progression 2
 	
 	# Logo
 	[ -f $PROJECT_LOGO ] && cp -v $PROJECT_LOGO $TRAC_ENV/htdocs/
 	trac-admin $TRAC_ENV config set header_logo alt "$TRAC_PROJECT_NAME logo"
 	trac-admin $TRAC_ENV config set header_logo src site/`basename $PROJECT_LOGO`
-	trac-admin $TRAC_ENV config set header_logo alt "$TRAC_PROJECT_NAME logo"
+	trac-admin $TRAC_ENV config set header_logo width 64
 	
 	#setup_components
         #setup_accountmanager
@@ -126,6 +111,16 @@ setup_apache() {
 }
 
 
+setup_plugings() {
+	echo ">> Setting up Plugins"
+	
+	trac-admin $TRAC_ENV config set components tracwysiwyg.* enabled
+	#trac-admin $TRAC_ENV config set components graphviz.* enabled
+	#trac-admin $TRAC_ENV config set components wikiautocomplete.web_ui.wikiautocompletemodule.* enabled
+	
+}
+
+
 clean_house() {
     if [ -d /.setup_trac.sh ] && [ -d /.setup_trac_config.sh ]
     then
@@ -137,6 +132,8 @@ clean_house() {
 setup_trac
 create_repo
 setup_repo
+setup_plugings
+
 #setup_apache
 
 #clean_house

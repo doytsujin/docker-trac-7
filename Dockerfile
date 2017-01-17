@@ -5,17 +5,41 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get install -y apt-utils
 RUN apt-get install -y python-pip
-RUN pip install --upgrade pip  # update PIP to the last version
+RUN apt-get install -y subversion
+#RUN pip install --upgrade pip  # update PIP to the last version
 RUN apt-get install -y vim  # only if we are going to enter interactively for debugging
 
 
-# Install packages
+# Install main packages
 #======================
 RUN apt-get install -y git-core
-RUN apt-get install -y apache2-utils  # htpasswd check contrib/htpasswd from trac
+#RUN apt-get install -y apache2-utils  # htpasswd check contrib/htpasswd from trac
 
-RUN pip install -U trac
-RUN pip install TracAccountManager
+#RUN pip install -U trac
+RUN apt-get install -y trac
+#RUN pip install TracAccountManager
+
+# Plugins
+#======================
+#RUN easy_install https://trac-hacks.org/svn/tracwysiwygplugin/0.12
+
+#RUN pip install graphviz
+#RUN easy_install https://trac-hacks.org/svn/graphvizplugin/tags/0.11-0.7.5
+RUN apt-get install -y trac-accountmanager
+#RUN apt-get install -y trac-customfieldadmin
+#RUN apt-get install -y trac-xmlrpc
+#RUN apt-get install -y trac-wikiprint
+RUN apt-get install -y trac-wysiwyg
+#RUN apt-get install -y trac-mastertickets
+#RUN apt-get install -y trac-tags
+#RUN apt-get install -y trac-diavisview
+#RUN apt-get install -y trac-announcer
+#RUN apt-get install -y trac-batchmodify
+#RUN apt-get install -y trac-graphviz
+#RUN apt-get install -y python-flup
+
+#RUN easy_install https://trac-hacks.org/svn/wikiautocompleteplugin
+
 
 
 # Apache services
@@ -38,9 +62,6 @@ RUN bash /root/trac_setup.sh
 #RUN a2enmod python
 #RUN service apache2 start
 
-
-
-
 #apt-get install -y cron
 #apt-get install -y wget
 #apt-get install -y libmysqlclient-dev
@@ -59,22 +80,6 @@ RUN bash /root/trac_setup.sh
 #pip install docutils
 #RUN pip install trac 
 
-#RUN apt-get install -y pwgen
-#RUN apt-get install -y git-core
-#RUN apt-get install -y trac
-#RUN apt-get install -y trac-git
-#RUN apt-get install -y trac-accountmanager
-#RUN apt-get install -y trac-customfieldadmin
-#RUN apt-get install -y trac-xmlrpc
-#RUN apt-get install -y trac-wikiprint
-#RUN apt-get install -y trac-wysiwyg
-#RUN apt-get install -y trac-mastertickets
-#RUN apt-get install -y trac-tags
-#RUN apt-get install -y trac-diavisview
-#RUN apt-get install -y trac-announcer
-#RUN apt-get install -y trac-batchmodify
-#RUN apt-get install -y trac-graphviz
-#RUN apt-get install -y python-flup
 
 # Apache
 #======================
@@ -112,19 +117,6 @@ RUN bash /root/trac_setup.sh
 #COPY apache2/ssl.conf /etc/apache2/conf.d/
 #COPY apache2/ports.conf /etc/apache2/
 #COPY apache2/index.html /var/www/html
-
-
-# Final settings
-#======================
-
-#ADD setup_trac_config.sh /.setup_trac_config.sh
-#ADD setup_trac.sh /.setup_trac.sh
-#ADD run.sh /run.sh
-#ADD trac_logo.png /var/www/trac_logo.png
-
-#ADD set_trac_user_password.py /usr/local/bin/
-#RUN chmod 755 /usr/local/bin/set_trac_user_password.py
-
 
 EXPOSE 80
 #CMD ["/bin/bash"]
