@@ -9,7 +9,7 @@ RUN apt-get install -y python-pip
 RUN apt-get install -y subversion
 #RUN pip install --upgrade pip  # update PIP to the last version
 RUN apt-get install -y vim  # only if we are going to enter interactively for debugging
-RUN apt-get install -y wget # for debuging
+RUN apt-get install -y wget curl # for debuging
 
 # Install main packages
 #======================

@@ -67,6 +67,13 @@ To *Backup* trac important files
 ```
 This script pause the container for a little bit, copy the files in a safe fashion and resume the service ASAP.
 
+To *Restore* back these files
+```bash
+./restore.sh
+```
+This script create a safe copy of these files before overwriting them from backuped ones.
+
+
 And finally just for *testing purproses* the script
 ```bash
 ./mrproper.sh
