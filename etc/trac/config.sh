@@ -6,6 +6,7 @@ export COMPANY_NAME=asterio.tk
 export TRAC_ENV=/var/trac
 export TRAC_PROJECT_NAME="My Project"
 export TRAC_PROJECT_SHORT=myproject
+export TRAC_PORT=80
 
 # running args for daemon
 export TRAC_ARGS=

@@ -11,8 +11,16 @@ setup_trac() {
 		
 	trac-admin $TRAC_ENV session add admin admin root@localhost
 	trac-admin $TRAC_ENV permission add admin TRAC_ADMIN
+	
 		
-        # from https://trac-hacks.org/wiki/AccountManagerPlugin/AuthStores
+	trac-admin $TRAC_ENV session add pfructuoso pfructuoso pefruc@gmail.com
+	trac-admin $TRAC_ENV permission add pfructuoso TRAC_ADMIN
+	
+	trac-admin $TRAC_ENV session add aster aster pyaster4@gmail.com
+	trac-admin $TRAC_ENV permission add aster TRAC_ADMIN
+
+		
+    # from https://trac-hacks.org/wiki/AccountManagerPlugin/AuthStores
 	# using HtDigestStore
 	# be sure to enable the component
     #trac-admin $TRAC_ENV config set components acct_mgr.htfile.HtDigestStore enabled
@@ -96,6 +104,20 @@ setup_trac() {
 	# TicketBoxMacro
 	# https://trac-hacks.org/wiki/FootNoteMacro
     trac-admin $TRAC_ENV config set components footnotemacro.*  enabled
+	
+	# TracReportInplaceEditPlugin
+	# https://trac-hacks.org/wiki/TracReportInplaceEditPlugin
+    trac-admin $TRAC_ENV config set components ripe.*  enabled
+
+	# TracWorkflowAdminPlugin
+	# https://trac-hacks.org/wiki/TracWorkflowAdminPlugin
+    trac-admin $TRAC_ENV config set components tracworkflowadmin.*  enabled
+	
+	# AdvancedTicketWorkflowPlugin
+	# https://trac-hacks.org/wiki/AdvancedTicketWorkflowPlugin
+    trac-admin $TRAC_ENV config set components advancedworkflow.*  enabled
+    trac-admin $TRAC_ENV config set ticket workflow "ConfigurableTicketWorkflow,TicketWorkflowOpOwnerReporter"
+	
 	
 	
     #trac-admin $TRAC_ENV config set logging log_type stderr

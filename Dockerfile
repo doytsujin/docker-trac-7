@@ -33,6 +33,11 @@ RUN apt-get install -y trac-tags
 RUN easy_install https://trac-hacks.org/svn/wikiautocompleteplugin/trunk/
 #RUN easy_install tracstats
 RUN apt-get install -y trac-includemacro
+#RUN easy_install https://trac-hacks.org/svn/gridmodifyplugin/trunk/
+RUN easy_install https://trac-hacks.org/svn/tracreportinplaceeditplugin/0.11/
+RUN easy_install https://trac-hacks.org/svn/tracworkflowadminplugin/0.12
+RUN easy_install  https://trac-hacks.org/svn/advancedticketworkflowplugin/1.2/
+
 
 #RUN easy_install https://trac-hacks.org/svn/cardsplugin/trunk
 #RUN easy_install https://trac-hacks.org/svn/whiteboardplugin/0.12/trunk/
