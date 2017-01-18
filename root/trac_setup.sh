@@ -88,6 +88,16 @@ setup_trac() {
 	# https://trac-hacks.org/wiki/IncludeMacro
     trac-admin $TRAC_ENV config set components includemacro.* enabled
 	
+	# TicketBoxMacro
+	# https://trac-hacks.org/wiki/TicketBoxMacro
+	curl -o $TRAC_ENV/plugins/TicketBox.py https://trac-hacks.org/svn/ticketboxmacro/TicketBox.py
+    trac-admin $TRAC_ENV config set components ticketbox.*  enabled
+	
+	# TicketBoxMacro
+	# https://trac-hacks.org/wiki/FootNoteMacro
+    trac-admin $TRAC_ENV config set components footnotemacro.*  enabled
+	
+	
     #trac-admin $TRAC_ENV config set logging log_type stderr
         
     fi
