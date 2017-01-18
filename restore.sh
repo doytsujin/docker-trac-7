@@ -19,7 +19,7 @@ rm .tmp
 
 echo "Restoring files"
 docker cp backup/trac.db $CID:/var/trac/db/trac.db 
-docker cp backup/trac.db $CID:/var/trac/conf/trac.ini 
+docker cp backup/trac.ini $CID:/var/trac/conf/trac.ini 
 
 # resume container
 echo "Resuming container"
