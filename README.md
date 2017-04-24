@@ -89,3 +89,6 @@ For Building manually the trac image
 ```bash
 docker build -t mytrac .
 ```
+
+That's all folks!
+
