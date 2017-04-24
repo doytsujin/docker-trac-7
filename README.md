@@ -90,5 +90,5 @@ For Building manually the trac image
 docker build -t mytrac .
 ```
 
-That's all folks!
+That's all folks! :)
 
